@@ -1,15 +1,34 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner in = new Scanner(System.in);
+        double itemPrice = 0;
+        double shippingCost = 0;
+        double totalCost = 0;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.print("Enter the price of the item: ");
+
+        // Check if the input is a valid number
+        if (in.hasNextDouble()) {
+            itemPrice = in.nextDouble();
+            in.nextLine(); // Clear the buffer
+
+            // Process shipping cost logic
+            if (itemPrice >= 100) {
+                shippingCost = 0; // Free shipping for $100+
+            } else {
+                shippingCost = itemPrice * 0.02; // 2% shipping
+            }
+
+            totalCost = itemPrice + shippingCost;
+
+            // Display results
+            System.out.println("Shipping Cost: $" + shippingCost);
+            System.out.println("Total Price: $" + totalCost);
+        } else {
+            // Error handling for non-numeric input
+            System.out.println("Invalid input. Please enter a numeric value.");
         }
     }
 }
